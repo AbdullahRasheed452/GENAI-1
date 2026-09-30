@@ -1,0 +1,14 @@
+torch>=2.14
+torchvision>=0.29
+numpy>=2.4
+pillow>=12.3
+scikit-learn>=1.9
+matplotlib>=3.11
+seaborn>=0.13
+optuna>=5.0
+mlflow>=3.16
+onnx>=1.23
+onnxruntime>=1.30
+pytorch-msssim>=1.0
+tqdm>=4.68
+pyyaml>=6.0

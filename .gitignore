@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints/
+node_modules/
+frontend/dist/
+mlruns/
+mlflow.db
+*.db
+*.pt
+*.pth
+*.onnx
+data/*
+!data/.gitkeep
+outputs/*
+!outputs/.gitkeep
