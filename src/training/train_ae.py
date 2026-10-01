@@ -6,7 +6,7 @@ from pathlib import Path
 import mlflow
 import numpy as np
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 
 from src.data.corruptions import CLASSES
 from src.data.datasets import ManifestDataset, PetTrainDataset
@@ -27,6 +27,7 @@ DEFAULTS = {
     "epochs": 10,
     "seed": 42,
     "num_workers": 2,
+    "condition": "random",
 }
 
 
@@ -52,6 +53,8 @@ def evaluate(model, loader, device):
     result = {"l1": l1.mean().item(), "ssim": s.mean().item(), "psnr": p.mean().item()}
     for k, name in enumerate(CLASSES):
         mask = lab == k
+        if not mask.any():
+            continue
         result[f"{name}_ssim"] = s[mask].mean().item()
         result[f"{name}_psnr"] = p[mask].mean().item()
     result["objective"] = 0.5 * result["l1"] + 0.5 * (1.0 - result["ssim"])
@@ -63,7 +66,7 @@ def train(config, tracking_uri=None, checkpoint=None, trial=None, run_name=None)
     set_seed(cfg["seed"])
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    train_ds = PetTrainDataset(condition="random", seed=cfg["seed"])
+    train_ds = PetTrainDataset(condition=cfg["condition"], seed=cfg["seed"])
     loader = DataLoader(
         train_ds,
         batch_size=cfg["batch_size"],
@@ -72,15 +75,20 @@ def train(config, tracking_uri=None, checkpoint=None, trial=None, run_name=None)
         drop_last=True,
         generator=torch.Generator().manual_seed(cfg["seed"]),
     )
-    val_loader = DataLoader(ManifestDataset("val"), batch_size=128, num_workers=cfg["num_workers"])
+    val_ds = ManifestDataset("val")
+    if cfg["condition"] != "random":
+        keep = [i for i, e in enumerate(val_ds.entries) if e["type"] == cfg["condition"]]
+        val_ds = Subset(val_ds, keep)
+    val_loader = DataLoader(val_ds, batch_size=128, num_workers=cfg["num_workers"])
 
     model = DenoisingAutoencoder(cfg["base"], cfg["latent_dim"], cfg["dropout"]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg["lr"])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=cfg["epochs"])
     loss_fn = RestorationLoss(cfg["alpha"])
 
+    experiment = EXPERIMENT if cfg["condition"] == "random" else f"task2_specialist_{cfg['condition']}"
     mlflow.set_tracking_uri(tracking_uri or f"sqlite:///{ROOT / 'mlflow.db'}")
-    mlflow.set_experiment(EXPERIMENT)
+    mlflow.set_experiment(experiment)
     best = float("inf")
 
     with mlflow.start_run(run_name=run_name):
