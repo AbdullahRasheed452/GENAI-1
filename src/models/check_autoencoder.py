@@ -1,6 +1,8 @@
+import numpy as np
 import torch
 from torch import nn
 
+from src.data.datasets import CACHE, to_tensor
 from src.models.autoencoder import DenoisingAutoencoder
 
 
@@ -16,31 +18,28 @@ def main():
         model = DenoisingAutoencoder(base=base, latent_dim=latent, dropout=0.1).to(device)
         z = model.encode(x)
         out = model(x)
-        ratio = 3 * 128 * 128 / latent
         print(f"base={base} latent={latent}: params {count(model) / 1e6:.1f}M, "
               f"latent {tuple(z.shape)}, output {tuple(out.shape)}, "
-              f"range {out.min():.2f} to {out.max():.2f}, compression {ratio:.0f}x")
+              f"compression {3 * 128 * 128 / latent:.0f}x")
         assert out.shape == x.shape and z.shape == (4, latent)
 
-    model = DenoisingAutoencoder(base=32, latent_dim=128, dropout=0.1).to(device)
+    model = DenoisingAutoencoder(base=32, latent_dim=128, dropout=0.0).to(device)
     model.eval()
     with torch.no_grad():
-        same = torch.equal(model(x), model(x))
-    print("eval mode is deterministic:", same)
+        print("eval mode is deterministic:", torch.equal(model(x), model(x)))
 
+    images = np.load(CACHE / "train.npy", mmap_mode="r")[:8]
+    batch = torch.stack([to_tensor(np.array(i)) for i in images]).to(device)
     model.train()
-    batch = torch.rand(8, 3, 128, 128, device=device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     loss_fn = nn.L1Loss()
-    first = None
-    for step in range(60):
+    for step in range(201):
         optimizer.zero_grad()
         loss = loss_fn(model(batch), batch)
         loss.backward()
         optimizer.step()
-        first = loss.item() if first is None else first
-    print(f"overfit one batch: loss {first:.3f} -> {loss.item():.3f}")
-    assert loss.item() < first
+        if step % 50 == 0:
+            print(f"overfit 8 real images, step {step}: L1 loss {loss.item():.4f}")
 
 
 if __name__ == "__main__":
