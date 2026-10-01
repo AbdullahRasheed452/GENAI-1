@@ -68,7 +68,7 @@ def evaluate(model, loader, device):
         result[f"mean_weight_{name}"] = branch_mean[j].item()
         result[f"weight_on_true_{name}"] = w[lab == j, j].mean().item()
     result["objective"] = 0.5 * result["l1"] + 0.5 * (1.0 - result["ssim"])
-    result["collapsed"] = float(branch_mean.max() > 0.6 or branch_mean.min() < 0.05)
+    result["collapsed"] = float(branch_mean.max() > 0.7)
     return result
 
 
@@ -204,3 +204,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
