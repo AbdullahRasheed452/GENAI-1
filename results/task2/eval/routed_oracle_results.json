@@ -1,0 +1,128 @@
+[
+ {
+  "condition": "clean",
+  "severity": "none",
+  "n": 3669,
+  "psnr": 100.0,
+  "ssim": 1.0,
+  "input_psnr": null,
+  "input_ssim": 1.0
+ },
+ {
+  "condition": "salt_pepper",
+  "severity": "low",
+  "n": 3669,
+  "psnr": 18.59759521484375,
+  "ssim": 0.5024452209472656,
+  "input_psnr": 20.15365982055664,
+  "input_ssim": 0.5884078741073608
+ },
+ {
+  "condition": "salt_pepper",
+  "severity": "medium",
+  "n": 3669,
+  "psnr": 18.597368240356445,
+  "ssim": 0.5016912221908569,
+  "input_psnr": 15.885876655578613,
+  "input_ssim": 0.32216766476631165
+ },
+ {
+  "condition": "salt_pepper",
+  "severity": "high",
+  "n": 3669,
+  "psnr": 18.55341339111328,
+  "ssim": 0.5000433325767517,
+  "input_psnr": 13.15767765045166,
+  "input_ssim": 0.18965743482112885
+ },
+ {
+  "condition": "salt_pepper",
+  "severity": "all",
+  "n": 11007,
+  "psnr": 18.58279037475586,
+  "ssim": 0.5013933181762695,
+  "input_psnr": 16.399070739746094,
+  "input_ssim": 0.36674433946609497
+ },
+ {
+  "condition": "blur",
+  "severity": "low",
+  "n": 3669,
+  "psnr": 18.517648696899414,
+  "ssim": 0.5022587776184082,
+  "input_psnr": 34.05726623535156,
+  "input_ssim": 0.957613468170166
+ },
+ {
+  "condition": "blur",
+  "severity": "medium",
+  "n": 3669,
+  "psnr": 18.613195419311523,
+  "ssim": 0.5017974376678467,
+  "input_psnr": 28.06040382385254,
+  "input_ssim": 0.8412736058235168
+ },
+ {
+  "condition": "blur",
+  "severity": "high",
+  "n": 3669,
+  "psnr": 18.686511993408203,
+  "ssim": 0.49946528673171997,
+  "input_psnr": 25.316505432128906,
+  "input_ssim": 0.7312192320823669
+ },
+ {
+  "condition": "blur",
+  "severity": "all",
+  "n": 11007,
+  "psnr": 18.605785369873047,
+  "ssim": 0.5011737942695618,
+  "input_psnr": 29.144725799560547,
+  "input_ssim": 0.8433687686920166
+ },
+ {
+  "condition": "occlusion",
+  "severity": "low",
+  "n": 3669,
+  "psnr": 18.529518127441406,
+  "ssim": 0.49213671684265137,
+  "input_psnr": 16.57355499267578,
+  "input_ssim": 0.8594880104064941
+ },
+ {
+  "condition": "occlusion",
+  "severity": "medium",
+  "n": 3669,
+  "psnr": 18.189271926879883,
+  "ssim": 0.4814452826976776,
+  "input_psnr": 13.370513916015625,
+  "input_ssim": 0.7261914610862732
+ },
+ {
+  "condition": "occlusion",
+  "severity": "high",
+  "n": 3669,
+  "psnr": 17.614473342895508,
+  "ssim": 0.46253344416618347,
+  "input_psnr": 10.749787330627441,
+  "input_ssim": 0.5392112731933594
+ },
+ {
+  "condition": "occlusion",
+  "severity": "all",
+  "n": 11007,
+  "psnr": 18.111087799072266,
+  "ssim": 0.47870513796806335,
+  "input_psnr": 13.564618110656738,
+  "input_ssim": 0.7082968950271606
+ },
+ {
+  "condition": "all corrupted",
+  "severity": "all",
+  "n": 33021,
+  "psnr": 18.4332218170166,
+  "ssim": 0.4937573969364166,
+  "input_psnr": 19.702804565429688,
+  "input_ssim": 0.6394700407981873
+ }
+]

@@ -1,0 +1,140 @@
+{
+ "groups": [
+  {
+   "condition": "clean",
+   "severity": "none",
+   "n": 3669,
+   "mean_weights": [
+    0.9737076163291931,
+    6.603748624911532e-05,
+    0.00312009803019464,
+    0.02310776710510254
+   ]
+  },
+  {
+   "condition": "salt_pepper",
+   "severity": "low",
+   "n": 3669,
+   "mean_weights": [
+    0.3071241080760956,
+    0.6068785190582275,
+    0.007526136003434658,
+    0.07847169041633606
+   ]
+  },
+  {
+   "condition": "salt_pepper",
+   "severity": "medium",
+   "n": 3669,
+   "mean_weights": [
+    0.0017120966222137213,
+    0.9954139590263367,
+    0.001058848574757576,
+    0.0018199587939307094
+   ]
+  },
+  {
+   "condition": "salt_pepper",
+   "severity": "high",
+   "n": 3669,
+   "mean_weights": [
+    5.297092625644595e-12,
+    1.0,
+    4.932949534963704e-11,
+    4.104469653043452e-08
+   ]
+  },
+  {
+   "condition": "blur",
+   "severity": "low",
+   "n": 3669,
+   "mean_weights": [
+    0.8562543988227844,
+    9.14045303943567e-05,
+    0.13989068567752838,
+    0.0037640733644366264
+   ]
+  },
+  {
+   "condition": "blur",
+   "severity": "medium",
+   "n": 3669,
+   "mean_weights": [
+    0.8040781021118164,
+    9.683403914095834e-05,
+    0.19266222417354584,
+    0.0031627060379832983
+   ]
+  },
+  {
+   "condition": "blur",
+   "severity": "high",
+   "n": 3669,
+   "mean_weights": [
+    0.795936107635498,
+    0.00010748182830866426,
+    0.20061445236206055,
+    0.0033412708435207605
+   ]
+  },
+  {
+   "condition": "occlusion",
+   "severity": "low",
+   "n": 3669,
+   "mean_weights": [
+    0.8580061197280884,
+    0.0003199275815859437,
+    0.0025248245801776648,
+    0.13914965093135834
+   ]
+  },
+  {
+   "condition": "occlusion",
+   "severity": "medium",
+   "n": 3669,
+   "mean_weights": [
+    0.6036920547485352,
+    0.0009040040313266218,
+    0.0021174715366214514,
+    0.3932868242263794
+   ]
+  },
+  {
+   "condition": "occlusion",
+   "severity": "high",
+   "n": 3669,
+   "mean_weights": [
+    0.28499850630760193,
+    0.0020927831064909697,
+    0.0016588302096351981,
+    0.7112493515014648
+   ]
+  }
+ ],
+ "expert_health": {
+  "identity": {
+   "mean_weight": 0.5485506057739258,
+   "top_choice_share": 0.6211774325429272,
+   "mean_weight_on_other_types": 0.501311182975769,
+   "flag": "DOMINATES OTHER TYPES"
+  },
+  "salt_pepper": {
+   "mean_weight": 0.26059654355049133,
+   "top_choice_share": 0.26511310983919323,
+   "mean_weight_on_other_types": 0.0005254964344203472,
+   "flag": "ok"
+  },
+  "blur": {
+   "mean_weight": 0.055117323994636536,
+   "top_choice_share": 0.0,
+   "mean_weight_on_other_types": 0.002572317374870181,
+   "flag": "INACTIVE"
+  },
+  "occlusion": {
+   "mean_weight": 0.13573546707630157,
+   "top_choice_share": 0.11370945761787953,
+   "mean_weight_on_other_types": 0.016238216310739517,
+   "flag": "ok"
+  }
+ }
+}
