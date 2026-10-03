@@ -17,3 +17,5 @@ outputs/*
 !outputs/.gitkeep
 
 results_raw/
+
+!experiments/mlflow/*.db
