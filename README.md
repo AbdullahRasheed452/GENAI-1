@@ -7,6 +7,7 @@ Generative AI, Assignment 1. Four generative models behind one web application. 
 * Repository: https://github.com/AbdullahRasheed452/GENAI-1
 * Trained ONNX models on Google Drive: https://drive.google.com/drive/folders/1O5NRmpWf2LKDXC6hxI7BO0HMAYznd3yv
 * Technical report: submitted as a PDF on Google Classroom
+* Demo video on YouTube: https://youtu.be/kPPl9NkhYq4
 
 ## The four tasks
 
